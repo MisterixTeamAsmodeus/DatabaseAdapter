@@ -10,7 +10,7 @@ file(GLOB_RECURSE SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 add_definitions(-DSQLITEADAPTER_LIBRARY)
 
-add_subdirectory(lib/sqlite-amalgamation)
+add_subdirectory(external/sqlite-amalgamation)
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 
@@ -34,7 +34,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/sqlite-amalgamation
+        ${CMAKE_CURRENT_SOURCE_DIR}/external/sqlite-amalgamation
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
