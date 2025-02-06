@@ -4,7 +4,6 @@
 
 #include <string>
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 namespace Models {
 /**
@@ -23,4 +22,3 @@ struct DATABASEADAPTER_EXPORT DatabaseSettings
 };
 } // namespace Models
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

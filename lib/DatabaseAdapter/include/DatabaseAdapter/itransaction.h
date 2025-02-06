@@ -4,7 +4,6 @@
 
 #include <string>
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 /**
  * @brief Интерфейс для работы с транзакциями в базе данных.
@@ -69,4 +68,3 @@ private:
     std::string _query;
 };
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

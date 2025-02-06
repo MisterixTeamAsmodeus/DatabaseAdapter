@@ -3,11 +3,10 @@
 #include "sqlliteadapter_global.h"
 
 #include <DatabaseAdapter/itransaction.h>
-#include <sqlite3.h>
+#include <sqlite-amalgamation/sqlite3.h>
 
 #include <memory>
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 namespace Sqlite {
 
@@ -27,4 +26,3 @@ private:
 
 } // namespace Sqlite
 } // namespace DatabaseAdapter
-}; // namespace EntityCraft

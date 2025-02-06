@@ -5,7 +5,6 @@
 // https://www.sqlite.org/cintro.html
 // https://www.book2s.com/tutorials/sqlite-cpp.html
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 namespace Sqlite {
 
@@ -98,4 +97,3 @@ std::shared_ptr<ITransaction> SqliteDatabaseAdapter::open_transaction(int type) 
 
 } // namespace Sqlite
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

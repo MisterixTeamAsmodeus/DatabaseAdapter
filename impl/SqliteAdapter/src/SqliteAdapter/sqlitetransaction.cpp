@@ -1,6 +1,5 @@
 #include "SqliteAdapter/sqlitetransaction.h"
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 namespace Sqlite {
 
@@ -37,4 +36,3 @@ bool SqliteTransaction::add_save_point(const std::string& save_point)
 
 } // namespace Sqlite
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

@@ -7,7 +7,6 @@
 
 #include <memory>
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 /**
  * @brief Интерфейс для работы с базами данных.
@@ -110,4 +109,3 @@ protected:
 };
 
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

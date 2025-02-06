@@ -1,6 +1,6 @@
 #include "DatabaseAdapter/itransaction.h"
 
-namespace EntityCraft {
+
 namespace DatabaseAdapter {
 
 bool ITransaction::exec(const std::string& query)
@@ -20,4 +20,4 @@ std::string ITransaction::query() const
 }
 
 } // namespace DatabaseAdapter
-} // namespace EntityCraft
+

@@ -6,7 +6,6 @@
 #include <string>
 #include <unordered_map>
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 namespace Models {
 
@@ -59,4 +58,3 @@ private:
 };
 } // namespace Models
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

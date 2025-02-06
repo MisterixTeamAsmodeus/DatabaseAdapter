@@ -1,8 +1,9 @@
 #include "DatabaseAdapter/model/queryresult.h"
 
-namespace EntityCraft {
+
 namespace DatabaseAdapter {
 namespace Models {
+
 QueryResult::QueryResult(const std::list<ResultRow>& result)
     : _result(result)
 {
@@ -29,4 +30,3 @@ bool QueryResult::empty() const
 }
 } // namespace Models
 } // namespace DatabaseAdapter
-} // namespace EntityCraft

@@ -3,9 +3,8 @@
 #include "sqlliteadapter_global.h"
 
 #include <DatabaseAdapter/idatabasedriver.h>
-#include <../lib/sqlite-amalgamation/sqlite3.h>
+#include <sqlite-amalgamation/sqlite3.h>
 
-namespace EntityCraft {
 namespace DatabaseAdapter {
 namespace Sqlite {
 
@@ -36,5 +35,4 @@ private:
 };
 
 } // namespace Sqlite
-} // namespace DatabaseAdapter
-}; // namespace EntityCraft
+}; // namespace DatabaseAdapter

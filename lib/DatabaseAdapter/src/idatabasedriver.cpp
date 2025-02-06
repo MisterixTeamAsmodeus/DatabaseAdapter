@@ -6,7 +6,7 @@ namespace {
 constexpr auto Null_Value = "NULL";
 }
 
-namespace EntityCraft {
+
 namespace DatabaseAdapter {
 
 IDataBaseDriver::IDataBaseDriver(Models::DatabaseSettings settings)
@@ -48,4 +48,4 @@ std::string IDataBaseDriver::null_value()
 }
 
 } // namespace DatabaseAdapter
-} // namespace EntityCraft
+
