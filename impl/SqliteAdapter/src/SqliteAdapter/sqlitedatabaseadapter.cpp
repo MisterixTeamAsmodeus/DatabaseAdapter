@@ -57,7 +57,7 @@ Models::QueryResult SqliteDatabaseAdapter::exec(const std::string& query)
             const auto column_name = sqlite3_column_name(stmt, i);
             const auto column_value = reinterpret_cast<const char*>(sqlite3_column_text(stmt, i));
 
-            row.insert({ column_name, column_value == nullptr ? null_value() : column_value });
+            row.emplace(column_name, column_value == nullptr ? null_value() : column_value);
         }
         result.add_row(row);
 

@@ -4,8 +4,7 @@
 
 namespace {
 constexpr auto Null_Value = "NULL";
-}
-
+} // namespace
 
 namespace DatabaseAdapter {
 
@@ -32,7 +31,7 @@ std::string IDataBaseDriver::last_query() const
 
 std::string IDataBaseDriver::last_error()
 {
-    const auto temp = _last_error;
+    const auto temp = std::move(_last_error);
     _last_error.clear();
     return temp;
 }
@@ -48,4 +47,3 @@ std::string IDataBaseDriver::null_value()
 }
 
 } // namespace DatabaseAdapter
-
