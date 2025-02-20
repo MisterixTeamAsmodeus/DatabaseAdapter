@@ -1,9 +1,9 @@
 #pragma once
 
+#include "sqlite-amalgamation/sqlite3.h"
 #include "sqlliteadapter_global.h"
 
-#include <DatabaseAdapter/idatabasedriver.h>
-#include <sqlite-amalgamation/sqlite3.h>
+#include <DatabaseAdapter/databaseadapter.h>
 
 namespace DatabaseAdapter {
 namespace Sqlite {

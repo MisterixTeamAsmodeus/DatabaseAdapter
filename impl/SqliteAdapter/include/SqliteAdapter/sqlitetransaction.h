@@ -1,11 +1,9 @@
 #pragma once
 
+#include "sqlite-amalgamation/sqlite3.h"
 #include "sqlliteadapter_global.h"
 
-#include <DatabaseAdapter/itransaction.h>
-#include <sqlite-amalgamation/sqlite3.h>
-
-#include <memory>
+#include <DatabaseAdapter/databaseadapter.h>
 
 namespace DatabaseAdapter {
 namespace Sqlite {

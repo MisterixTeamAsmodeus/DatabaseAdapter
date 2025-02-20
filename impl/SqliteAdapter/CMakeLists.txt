@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.8)
 
 project(SqliteAdapter LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
 file(GLOB_RECURSE SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
@@ -13,6 +10,8 @@ add_definitions(-DSQLITEADAPTER_LIBRARY)
 add_subdirectory(external/sqlite-amalgamation)
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_14)
 
 set_target_properties(${PROJECT_NAME}
         PROPERTIES
@@ -47,5 +46,3 @@ install(TARGETS ${PROJECT_NAME}
 install(DIRECTORY include/
         DESTINATION include
 )
-
-add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
