@@ -30,7 +30,7 @@ public:
      *
      * @return Возвращает true, если запрос был успешно выполнен, в противном случае - false.
      */
-    virtual bool exec(const std::string& query);
+    virtual bool exec(const std::string& query); //TODO переделать на optional<Models::QueryResult>
 
     /**
      * @brief Фиксирует изменения в базе данных.

@@ -55,7 +55,7 @@ public:
      * @param query SQL-запрос.
      * @return Результат выполнения SQL-запроса.
      */
-    virtual Models::QueryResult exec(const std::string& query);
+    virtual Models::QueryResult exec(const std::string& query); //TODO переделать на optional<Models::QueryResult>
 
     /**
      * @brief Открывает новую транзакцию с типом -1.
