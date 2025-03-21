@@ -11,14 +11,14 @@ namespace Models {
  */
 struct DATABASEADAPTER_EXPORT DatabaseSettings
 {
-    /// @brief Адрес для подключения к базе данных
-    std::string url;
+    /// @brief Адрес/путь для подключения к базе данных
+    std::string url {};
     /// @brief Порт для подключения к базе данных
-    std::string port;
+    std::string port {};
     /// @brief Имя пользователя для авторизации
-    std::string login;
+    std::string login {};
     /// @brief Пароль пользователя для авторизации
-    std::string password;
+    std::string password {};
 };
 } // namespace Models
 } // namespace DatabaseAdapter
