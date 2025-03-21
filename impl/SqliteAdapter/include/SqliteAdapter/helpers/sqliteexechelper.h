@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../sqlliteadapter_global.h"
+
 #include <DatabaseAdapter/model/queryresult.h>
 #include <sqlite-amalgamation/sqlite3.h>
 
@@ -12,6 +14,6 @@ namespace Helpers {
  * @return Результат выполнения запроса
  * @throws Выбрасывает sql_exception, если произошла ошибка выполнения запроса
  */
-inline Models::QueryResult exec_sqlite_script(sqlite3* database, const std::string& query);
+SQLITEADAPTER_EXPORT inline Models::QueryResult exec_sqlite_script(sqlite3* database, const std::string& query);
 } // namespace Helpers
 } // namespace DatabaseAdapter
