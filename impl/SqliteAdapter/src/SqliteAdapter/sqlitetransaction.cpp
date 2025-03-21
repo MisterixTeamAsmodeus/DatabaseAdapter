@@ -2,6 +2,9 @@
 
 #include "SqliteAdapter/helpers/sqliteexechelper.h"
 
+// https://www.sqlite.org/cintro.html
+// https://www.book2s.com/tutorials/sqlite-cpp.html
+
 namespace DatabaseAdapter {
 namespace Sqlite {
 
