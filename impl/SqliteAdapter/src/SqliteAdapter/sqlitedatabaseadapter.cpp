@@ -2,6 +2,7 @@
 
 #include "SqliteAdapter/helpers/sqliteexechelper.h"
 #include "SqliteAdapter/sqlitetransaction.h"
+#include "SqliteAdapter/transactiontype.h"
 
 #include <DatabaseAdapter/opendatabaseexception.h>
 
@@ -51,11 +52,11 @@ std::shared_ptr<ITransaction> SqliteDatabaseAdapter::open_transaction(int type) 
 {
     const auto sql = [&type]() {
         switch(type) {
-            case DEFERRED:
+            case TransactionType::DEFERRED:
                 return "BEGIN DEFERRED;";
-            case IMMEDIATE:
+            case TransactionType::IMMEDIATE:
                 return "BEGIN IMMEDIATE;";
-            case EXCLUSIVE:
+            case TransactionType::EXCLUSIVE:
                 return "BEGIN EXCLUSIVE;";
             default:
                 return "BEGIN;";

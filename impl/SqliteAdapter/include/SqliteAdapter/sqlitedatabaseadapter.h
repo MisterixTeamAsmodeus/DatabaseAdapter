@@ -11,13 +11,6 @@ namespace Sqlite {
 class SQLITEADAPTER_EXPORT SqliteDatabaseAdapter final : public IDataBaseDriver
 {
 public:
-    enum TransactionType
-    {
-        DEFERRED = 0,
-        IMMEDIATE,
-        EXCLUSIVE
-    };
-
     explicit SqliteDatabaseAdapter(const Models::DatabaseSettings& settings);
 
     ~SqliteDatabaseAdapter() override;
