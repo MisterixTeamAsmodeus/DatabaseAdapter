@@ -1,5 +1,7 @@
 #include "SqliteAdapter/sqlitetransaction.h"
 
+#include "SqliteAdapter/helpers/sqliteexechelper.h"
+
 namespace DatabaseAdapter {
 namespace Sqlite {
 
@@ -8,10 +10,9 @@ SqliteTransaction::SqliteTransaction(sqlite3* database)
 {
 }
 
-bool SqliteTransaction::exec(const std::string& query)
+Models::QueryResult SqliteTransaction::exec(const std::string& query)
 {
-    ITransaction::exec(query);
-    return sqlite3_exec(_database, query.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK;
+    return Helpers::exec_sqlite_script(_database, query);
 }
 
 bool SqliteTransaction::commit()

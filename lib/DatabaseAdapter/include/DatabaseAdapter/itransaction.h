@@ -1,6 +1,7 @@
 #pragma once
 
 #include "databaseadapter_global.h"
+#include "model/queryresult.h"
 
 #include <string>
 
@@ -27,10 +28,10 @@ public:
      * в рамках транзакции.
      *
      * @param query Строка, содержащая SQL-запрос для выполнения.
-     *
-     * @return Возвращает true, если запрос был успешно выполнен, в противном случае - false.
+     * @return Результат выполнения SQL-запроса.
+     * @throws Выбрасывает исключение в случае ошибки выполнения запроса
      */
-    virtual bool exec(const std::string& query); //TODO переделать на optional<Models::QueryResult>
+    virtual Models::QueryResult exec(const std::string& query) = 0;
 
     /**
      * @brief Фиксирует изменения в базе данных.
@@ -56,15 +57,5 @@ public:
      * @param save_point Имя точки сохранения.
      */
     virtual bool add_save_point(const std::string& save_point) = 0;
-
-    /**
-     * @brief Возвращает текст сгенерированного SQL-запроса.
-     * @return Текст сгенерированного SQL-запроса.
-     */
-    std::string query() const;
-
-private:
-    /// @brief Сгенерированный SQL-запрос.
-    std::string _query;
 };
 } // namespace DatabaseAdapter

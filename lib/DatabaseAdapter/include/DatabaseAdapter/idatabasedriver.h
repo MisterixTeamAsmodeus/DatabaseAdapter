@@ -17,6 +17,13 @@ class DATABASEADAPTER_EXPORT IDataBaseDriver
 {
 public:
     /**
+     * @brief Возвращает текст, представляющий NULL-значение в базе данных.
+     * @return NULL-значение в виде строки.
+     */
+    static std::string null_value();
+
+public:
+    /**
      * @brief Конструктор IDataBaseDriver с указанными настройками подключения.
      * @param settings Настройки подключения к базе данных.
      */
@@ -54,9 +61,9 @@ public:
      * и вернуть результат в виде объекта QueryResult.
      * @param query SQL-запрос.
      * @return Результат выполнения SQL-запроса.
+     * @throws Выбрасывает исключение в случае ошибки выполнения запроса
      */
-    virtual Models::QueryResult exec(const std::string& query); //TODO переделать на optional<Models::QueryResult>
-
+    virtual Models::QueryResult exec(const std::string& query) = 0;
     /**
      * @brief Открывает новую транзакцию с типом -1.
      * Эта функция должна открыть новую транзакцию и вернуть указатель на нее.
@@ -72,40 +79,9 @@ public:
      */
     virtual std::shared_ptr<ITransaction> open_transaction(int type) const = 0;
 
-    /**
-     * @brief Возвращает текст последнего выполненного SQL-запроса.
-     * @return Текст последнего выполненного SQL-запроса.
-     */
-    std::string last_query() const;
-
-    /**
-     * @brief Возвращает текст последней ошибки, произошедшей при выполнении SQL-запроса.
-     * @return Текст последней ошибки, произошедшей при выполнении SQL-запроса.
-     * @note Очищает текст ошибки после вызова функции.
-     *       Если ошибка не была зарегистрирована, то возвращает пустую строку.
-     */
-    std::string last_error();
-
-    /**
-     * @brief Проверяет, произошла ли ошибка при выполнении предыдущего SQL-запроса.
-     * @return true, если ошибка произошла, иначе false.
-     */
-    bool has_error() const;
-
-protected:
-    /**
-     * @brief Возвращает текст, представляющий NULL-значение в базе данных.
-     * @return NULL-значение в виде строки.
-     */
-    static std::string null_value();
-
 protected:
     /// @brief Настройки подключения к базе данных.
     Models::DatabaseSettings _settings;
-    /// @brief Текст последнего выполненного SQL-запроса.
-    std::string _last_query;
-    /// @brief Текст последней ошибки, произошедшей при выполнении SQL-запроса.
-    std::string _last_error;
 };
 
 } // namespace DatabaseAdapter
