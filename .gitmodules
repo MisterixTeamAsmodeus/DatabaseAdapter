@@ -1,3 +1,0 @@
-[submodule "impl/SqliteAdapter/external/sqlite-amalgamation"]
-	path = impl/SqliteAdapter/external/sqlite-amalgamation
-	url = https://github.com/azadkuh/sqlite-amalgamation.git

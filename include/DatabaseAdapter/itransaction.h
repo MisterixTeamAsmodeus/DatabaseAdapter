@@ -1,6 +1,5 @@
 #pragma once
 
-#include "databaseadapter_global.h"
 #include "model/queryresult.h"
 
 #include <string>
@@ -12,7 +11,7 @@ namespace DatabaseAdapter {
  * которые должны быть реализованы в конкретных драйверах базы данных.
  * @note Класс должен быть специализирован для конкретной реализации базы данных и генерировать sql команды для выполнения внесенных изменений.
  */
-class DATABASEADAPTER_EXPORT ITransaction
+class ITransaction
 {
 public:
     /**

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "DatabaseAdapter/databaseadapter_global.h"
-
 #include <list>
 #include <string>
 #include <unordered_map>
@@ -12,7 +10,7 @@ namespace Models {
 /**
  * @brief Класс для хранения и предоставления результатов SQL-запросов
  */
-class DATABASEADAPTER_EXPORT QueryResult
+class QueryResult
 {
 public:
     /// @brief Псевдоним для имени столбца результата

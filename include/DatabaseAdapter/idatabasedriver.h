@@ -1,6 +1,5 @@
 #pragma once
 
-#include "databaseadapter_global.h"
 #include "itransaction.h"
 #include "model/databasesettings.h"
 #include "model/queryresult.h"
@@ -13,7 +12,7 @@ namespace DatabaseAdapter {
  * Класс IDataBaseDriver предоставляет основные операции с базами данных,
  * которые должны быть реализованы в конкретных драйверах базы данных.
  */
-class DATABASEADAPTER_EXPORT IDataBaseDriver
+class IDataBaseDriver
 {
 public:
     /**
@@ -69,7 +68,7 @@ public:
      * Эта функция должна открыть новую транзакцию и вернуть указатель на нее.
      * @return Указатель на открытую транзакцию. Если транзакция не была открыта возвращается nullptr.
      */
-    virtual std::shared_ptr<ITransaction> open_transaction() const;
+    std::shared_ptr<ITransaction> open_base_transaction() const;
 
     /**
      * @brief Открывает новую транзакцию.

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "DatabaseAdapter/databaseadapter_global.h"
-
 #include <string>
 
 namespace DatabaseAdapter {
@@ -9,7 +7,7 @@ namespace Models {
 /**
  * @brief Класс описывающий настройки для подключения к базе данных
  */
-struct DATABASEADAPTER_EXPORT DatabaseSettings
+struct DatabaseSettings
 {
     /// @brief Адрес/путь для подключения к базе данных
     std::string url {};

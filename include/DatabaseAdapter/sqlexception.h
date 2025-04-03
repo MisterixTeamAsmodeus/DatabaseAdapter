@@ -1,12 +1,10 @@
 #pragma once
 
-#include "databaseadapter_global.h"
-
 #include <exception>
 #include <string>
 
 namespace DatabaseAdapter {
-class DATABASEADAPTER_EXPORT sql_exception final : public std::exception
+class sql_exception final : public std::exception
 {
 public:
     sql_exception() = default;

@@ -13,11 +13,10 @@ IDataBaseDriver::IDataBaseDriver(Models::DatabaseSettings settings)
 {
 }
 
-std::shared_ptr<ITransaction> IDataBaseDriver::open_transaction() const
+std::shared_ptr<ITransaction> IDataBaseDriver::open_base_transaction() const
 {
     return open_transaction(-1);
 }
-
 
 std::string IDataBaseDriver::null_value()
 {
