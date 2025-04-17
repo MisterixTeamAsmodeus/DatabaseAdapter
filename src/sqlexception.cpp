@@ -18,4 +18,9 @@ const char* sql_exception::what() const
 {
     return _message.c_str();
 }
+
+std::string sql_exception::last_query() const
+{
+    return _last_query;
+}
 } // namespace DatabaseAdapter
