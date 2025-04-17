@@ -7,13 +7,18 @@ namespace DatabaseAdapter {
 class open_database_exception final : std::exception
 {
 public:
-    explicit open_database_exception(const std::string& Message);
+    explicit open_database_exception(std::string Message);
+
+    open_database_exception(const open_database_exception& other) = default;
+    open_database_exception(open_database_exception&& other) noexcept = default;
+    open_database_exception& operator=(const open_database_exception& other) = default;
+    open_database_exception& operator=(open_database_exception&& other) noexcept = default;
 
     ~open_database_exception() noexcept override = default;
 
     const char* what() const override;
 
 private:
-    std::string _message;
+    std::string _message = nullptr;
 };
 } // namespace DatabaseAdapter
