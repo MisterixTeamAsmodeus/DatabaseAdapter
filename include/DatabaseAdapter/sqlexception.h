@@ -7,10 +7,11 @@ namespace DatabaseAdapter {
 class sql_exception final : public std::exception
 {
 public:
-    sql_exception() = default;
+    explicit sql_exception(char* Message);
+    sql_exception(char* Message, char* last_query);
 
-    explicit sql_exception(char const* Message);
-    sql_exception(char const* Message, char const* last_query);
+    ~sql_exception() noexcept override = default;
+    const char* what() const override;
 
     std::string last_query() const
     {
@@ -18,6 +19,7 @@ public:
     }
 
 private:
+    char* _message = nullptr;
     /// @brief Текст последнего выполненного SQL-запроса.
     std::string _last_query {};
 };
