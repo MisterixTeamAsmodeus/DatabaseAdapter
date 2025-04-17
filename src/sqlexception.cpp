@@ -14,7 +14,7 @@ sql_exception::sql_exception(std::string Message, std::string last_query)
 {
 }
 
-const char* sql_exception::what() const
+const char* sql_exception::what() const noexcept
 {
     return _message.c_str();
 }

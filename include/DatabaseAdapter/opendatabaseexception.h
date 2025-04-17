@@ -4,7 +4,7 @@
 #include <string>
 
 namespace DatabaseAdapter {
-class open_database_exception final : std::exception
+class open_database_exception final : public std::exception
 {
 public:
     explicit open_database_exception(std::string Message);
@@ -16,9 +16,9 @@ public:
 
     ~open_database_exception() noexcept override = default;
 
-    const char* what() const override;
+    const char* what() const noexcept override;
 
 private:
-    std::string _message = nullptr;
+    std::string _message;
 };
 } // namespace DatabaseAdapter

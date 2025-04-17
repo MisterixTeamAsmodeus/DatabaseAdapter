@@ -6,7 +6,7 @@ open_database_exception::open_database_exception(std::string Message)
 {
 }
 
-const char* open_database_exception::what() const
+const char* open_database_exception::what() const noexcept
 {
     return _message.c_str();
 }

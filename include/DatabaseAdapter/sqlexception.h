@@ -16,7 +16,7 @@ public:
     sql_exception& operator=(sql_exception&& other) noexcept = default;
 
     ~sql_exception() noexcept override = default;
-    const char* what() const override;
+    const char* what() const noexcept override;
 
     std::string last_query() const;
 
