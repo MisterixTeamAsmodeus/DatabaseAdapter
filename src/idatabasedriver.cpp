@@ -2,13 +2,9 @@
 
 #include <utility>
 
-namespace {
-constexpr auto Null_Value = "NULL";
-} // namespace
+namespace database_adapter {
 
-namespace DatabaseAdapter {
-
-IDataBaseDriver::IDataBaseDriver(Models::DatabaseSettings settings)
+IDataBaseDriver::IDataBaseDriver(models::database_settings settings)
     : _settings(std::move(settings))
 {
 }
@@ -20,7 +16,7 @@ std::shared_ptr<ITransaction> IDataBaseDriver::open_base_transaction() const
 
 std::string IDataBaseDriver::null_value()
 {
-    return Null_Value;
+    return "NULL";
 }
 
-} // namespace DatabaseAdapter
+} // namespace database_adapter

@@ -2,14 +2,14 @@
 
 #include <utility>
 
-namespace DatabaseAdapter {
-sql_exception::sql_exception(std::string Message)
-    : _message(std::move(Message))
+namespace database_adapter {
+sql_exception::sql_exception(std::string message)
+    : _message(std::move(message))
 {
 }
 
-sql_exception::sql_exception(std::string Message, std::string last_query)
-    : _message(std::move(Message))
+sql_exception::sql_exception(std::string message, std::string last_query)
+    : _message(std::move(message))
     , _last_query(std::move(last_query))
 {
 }

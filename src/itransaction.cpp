@@ -1,10 +1,10 @@
 #include "DatabaseAdapter/itransaction.h"
 
-namespace DatabaseAdapter {
+namespace database_adapter {
 
 bool ITransaction::rollback()
 {
     return rollback("");
 }
 
-} // namespace DatabaseAdapter
+} // namespace database_adapter

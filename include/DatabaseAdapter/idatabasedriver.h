@@ -1,12 +1,12 @@
 #pragma once
 
 #include "itransaction.h"
-#include "model/databasesettings.h"
-#include "model/queryresult.h"
+#include "model/database_settings.h"
+#include "model/query_result.h"
 
 #include <memory>
 
-namespace DatabaseAdapter {
+namespace database_adapter {
 /**
  * @brief Интерфейс для работы с базами данных.
  * Класс IDataBaseDriver предоставляет основные операции с базами данных,
@@ -26,7 +26,7 @@ public:
      * @brief Конструктор IDataBaseDriver с указанными настройками подключения.
      * @param settings Настройки подключения к базе данных.
      */
-    explicit IDataBaseDriver(Models::DatabaseSettings settings);
+    explicit IDataBaseDriver(models::database_settings settings);
 
     /**
      * @brief Деструктор по умолчанию.
@@ -38,6 +38,7 @@ public:
      * Эта функция должна устанавливать соединение с базой данных
      * с использованием настроек, указанных при создании экземпляра драйвера.
      * @return true, если соединение установлено успешно, иначе false.
+     * @throws Выбрасывает исключение open_database_exception в случае ошибки подключения к базе данных
      */
     virtual bool connect() = 0;
 
@@ -60,9 +61,9 @@ public:
      * и вернуть результат в виде объекта QueryResult.
      * @param query SQL-запрос.
      * @return Результат выполнения SQL-запроса.
-     * @throws Выбрасывает исключение в случае ошибки выполнения запроса
+     * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
      */
-    virtual Models::QueryResult exec(const std::string& query) = 0;
+    virtual models::query_result exec(const std::string& query) = 0;
     /**
      * @brief Открывает новую транзакцию с типом -1.
      * Эта функция должна открыть новую транзакцию и вернуть указатель на нее.
@@ -80,7 +81,7 @@ public:
 
 protected:
     /// @brief Настройки подключения к базе данных.
-    Models::DatabaseSettings _settings;
+    models::database_settings _settings;
 };
 
-} // namespace DatabaseAdapter
+} // namespace database_adapter

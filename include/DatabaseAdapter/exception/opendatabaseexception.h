@@ -3,11 +3,14 @@
 #include <exception>
 #include <string>
 
-namespace DatabaseAdapter {
+namespace database_adapter {
+/**
+ * Исключение которое информирует о том, что произошла ошибка при подключении к базе данных
+ */
 class open_database_exception final : public std::exception
 {
 public:
-    explicit open_database_exception(std::string Message);
+    explicit open_database_exception(std::string message);
 
     open_database_exception(const open_database_exception& other) = default;
     open_database_exception(open_database_exception&& other) noexcept = default;
@@ -19,6 +22,7 @@ public:
     const char* what() const noexcept override;
 
 private:
+    /// Информация о ошибке подключения к базе данных
     std::string _message;
 };
-} // namespace DatabaseAdapter
+} // namespace database_adapter

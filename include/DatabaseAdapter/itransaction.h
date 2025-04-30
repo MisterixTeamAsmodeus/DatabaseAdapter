@@ -1,10 +1,10 @@
 #pragma once
 
-#include "model/queryresult.h"
+#include "model/query_result.h"
 
 #include <string>
 
-namespace DatabaseAdapter {
+namespace database_adapter {
 /**
  * @brief Интерфейс для работы с транзакциями в базе данных.
  * Класс ITransaction предоставляет основные операции с транзакциями,
@@ -28,9 +28,9 @@ public:
      *
      * @param query Строка, содержащая SQL-запрос для выполнения.
      * @return Результат выполнения SQL-запроса.
-     * @throws Выбрасывает исключение в случае ошибки выполнения запроса
+     * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
      */
-    virtual Models::QueryResult exec(const std::string& query) = 0;
+    virtual models::query_result exec(const std::string& query) = 0;
 
     /**
      * @brief Фиксирует изменения в базе данных.
@@ -39,7 +39,10 @@ public:
      */
     virtual bool commit() = 0;
 
-    bool rollback();
+    /**
+     * Отменить изменения в базе данных
+     */
+    virtual bool rollback();
 
     /**
      * @brief Откатывает изменения в базе данных до указанной точки сохранения.
@@ -57,4 +60,4 @@ public:
      */
     virtual bool add_save_point(const std::string& save_point) = 0;
 };
-} // namespace DatabaseAdapter
+} // namespace database_adapter

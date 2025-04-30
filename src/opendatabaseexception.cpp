@@ -1,8 +1,8 @@
 #include <DatabaseAdapter/opendatabaseexception.h>
 
-namespace DatabaseAdapter {
-open_database_exception::open_database_exception(std::string Message)
-    : _message(std::move(Message))
+namespace database_adapter {
+open_database_exception::open_database_exception(std::string message)
+    : _message(std::move(message))
 {
 }
 

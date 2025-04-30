@@ -4,55 +4,55 @@
 #include <string>
 #include <unordered_map>
 
-namespace DatabaseAdapter {
-namespace Models {
+namespace database_adapter {
+namespace models {
 
 /**
  * @brief Класс для хранения и предоставления результатов SQL-запросов
  */
-class QueryResult
+class query_result
 {
 public:
     /// @brief Псевдоним для имени столбца результата
-    typedef std::string ColumnName;
+    typedef std::string column_name;
 
     /// @brief Псевдоним для значения столбца результата
-    typedef std::string Value;
+    typedef std::string value;
 
     /// @brief Псевдоним для строки результата запроса
-    typedef std::unordered_map<ColumnName, Value> ResultRow;
+    typedef std::unordered_map<column_name, value> result_row;
 
-    QueryResult() = default;
+    query_result() = default;
 
     /**
      * @brief Конструктор, который принимает список ResultRow и инициализирует результат запроса
      * @param result Список ResultRow для инициализации результата
      */
-    explicit QueryResult(const std::list<ResultRow>& result);
+    explicit query_result(const std::list<result_row>& result);
 
     /**
      * @brief Добавляет новую строку результата в конец списка
      * @param value Строка результата для добавления
      */
-    void add_row(const ResultRow& value);
+    void add_row(const result_row& value);
 
     /**
      * @brief Возвращает список всех строк результата
      * @return Список всех строк результата
      */
-    std::list<ResultRow> data() const;
+    std::list<result_row> data() const;
 
     /**
      * Перегрузка оператора для удобства использования внутри цикла
      * @return Список всех строк результата
      */
-    std::list<ResultRow>& operator()();
+    std::list<result_row>& operator()();
 
     bool empty() const;
 
 private:
     /// @brief Поле, которое хранит список всех строк результатов запроса
-    std::list<ResultRow> _result = {};
+    std::list<result_row> _result = {};
 };
-} // namespace Models
-} // namespace DatabaseAdapter
+} // namespace models
+} // namespace database_adapter

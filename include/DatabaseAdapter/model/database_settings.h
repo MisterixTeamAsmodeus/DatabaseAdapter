@@ -2,12 +2,12 @@
 
 #include <string>
 
-namespace DatabaseAdapter {
-namespace Models {
+namespace database_adapter {
+namespace models {
 /**
  * @brief Класс описывающий настройки для подключения к базе данных
  */
-struct DatabaseSettings
+struct database_settings
 {
     /// @brief Адрес/путь для подключения к базе данных
     std::string url {};
