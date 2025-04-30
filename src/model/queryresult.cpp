@@ -1,4 +1,4 @@
-#include "DatabaseAdapter/model/query_result.h"
+#include "DatabaseAdapter/model/queryresult.h"
 
 namespace database_adapter {
 namespace models {

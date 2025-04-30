@@ -1,6 +1,6 @@
 #pragma once
 
-#include "model/query_result.h"
+#include "model/queryresult.h"
 
 #include <string>
 

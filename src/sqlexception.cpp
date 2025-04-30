@@ -1,4 +1,4 @@
-#include <DatabaseAdapter/sqlexception.h>
+#include <DatabaseAdapter/exception/sqlexception.h>
 
 #include <utility>
 

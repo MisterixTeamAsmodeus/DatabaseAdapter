@@ -1,8 +1,8 @@
 #pragma once
 
 #include "itransaction.h"
-#include "model/database_settings.h"
-#include "model/query_result.h"
+#include "model/databasesettings.h"
+#include "model/queryresult.h"
 
 #include <memory>
 

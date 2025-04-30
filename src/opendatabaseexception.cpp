@@ -1,4 +1,4 @@
-#include <DatabaseAdapter/opendatabaseexception.h>
+#include <DatabaseAdapter/exception/opendatabaseexception.h>
 
 namespace database_adapter {
 open_database_exception::open_database_exception(std::string message)
