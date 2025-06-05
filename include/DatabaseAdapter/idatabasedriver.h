@@ -79,6 +79,19 @@ public:
      */
     virtual std::shared_ptr<ITransaction> open_transaction(int type) const = 0;
 
+    /**
+     * Возвращает флаг который сообщает о том что данная база данных поддреживает returning после insert
+     */
+    virtual bool has_returning_statment();
+
+    /**
+     * Функция которая модифицирует запрос на всавку чтобы она возвращала требуемые поля после вставки
+     * @param sql Запрос который необходимо модифицировать
+     * @param returning_columns Список колонок которые необходимо вернуть
+     * @note Для баз данных в которых нет поддержки returning
+     */
+    virtual void append_returning(std::string& sql, const std::vector<std::string>& returning_columns);
+
 protected:
     /// @brief Настройки подключения к базе данных.
     models::database_settings _settings;
