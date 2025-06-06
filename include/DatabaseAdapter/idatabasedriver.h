@@ -5,6 +5,7 @@
 #include "model/queryresult.h"
 
 #include <memory>
+#include <vector>
 
 namespace database_adapter {
 /**
