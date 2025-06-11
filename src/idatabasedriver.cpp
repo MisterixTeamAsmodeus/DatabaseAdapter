@@ -14,6 +14,15 @@ std::shared_ptr<ITransaction> IDataBaseDriver::open_base_transaction() const
     return open_transaction(-1);
 }
 
+bool IDataBaseDriver::has_returning_statment()
+{
+    return true;
+}
+
+void IDataBaseDriver::append_returning(std::string& sql, const std::vector<std::string>& returning_columns)
+{
+}
+
 std::string IDataBaseDriver::null_value()
 {
     return "NULL";

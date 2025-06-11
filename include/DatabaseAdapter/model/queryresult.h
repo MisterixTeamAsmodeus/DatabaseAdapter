@@ -25,8 +25,8 @@ public:
     query_result() = default;
 
     /**
-     * @brief Конструктор, который принимает список ResultRow и инициализирует результат запроса
-     * @param result Список ResultRow для инициализации результата
+     * @brief Конструктор, который принимает список result_row и инициализирует результат запроса
+     * @param result Список result_row для инициализации результата
      */
     explicit query_result(const std::list<result_row>& result);
 
