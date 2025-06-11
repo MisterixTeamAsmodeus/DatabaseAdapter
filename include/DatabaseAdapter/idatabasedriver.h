@@ -60,7 +60,7 @@ public:
      * Эта функция должна закрыть текущее соединение с базой данных.
      * @return true, если соединение закрыто успешно, иначе false.
      */
-    virtual bool disconnect() const = 0;
+    virtual bool disconnect() = 0;
 
     /**
      * @brief Выполняет SQL-запрос к базе данных.
