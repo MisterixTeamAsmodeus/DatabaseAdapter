@@ -39,7 +39,7 @@ public:
      * для отката изменений до этой точки в текущей транзакции.
      * @param save_point Имя точки сохранения.
      */
-    virtual bool add_save_point(const std::string& save_point) = 0;
+    virtual void add_save_point(const std::string& save_point) = 0;
 
     /**
      * @brief Откатывает изменения в базе данных до указанной точки сохранения.
@@ -48,12 +48,12 @@ public:
      * @param save_point Точка сохранения, до которой необходимо откатить изменения.
      * @note Если строка пустая должен произойти откат всех изменений
      */
-    virtual bool rollback_to_save_point(const std::string& save_point) = 0;
+    virtual void rollback_to_save_point(const std::string& save_point) = 0;
 
     /**
      * Отменить изменения в базе данных
      */
-    bool rollback();
+    void rollback();
 
     /**
      * @brief Выполняет SQL-запрос в рамках текущей транзакции.
@@ -66,7 +66,7 @@ public:
      * @return Результат выполнения SQL-запроса.
      * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
      */
-    models::query_result exec(const std::string& query);
+    virtual models::query_result exec(const std::string& query);
 
 protected:
     std::shared_ptr<IConnection> _connection;

@@ -14,9 +14,9 @@ models::query_result ITransaction::exec(const std::string& query)
     return _connection->exec(query);
 }
 
-bool ITransaction::rollback()
+void ITransaction::rollback()
 {
-    return rollback_to_save_point("");
+    rollback_to_save_point("");
 }
 
 } // namespace database_adapter
