@@ -1,4 +1,7 @@
-#include <DatabaseAdapter/idatabasedriver.h>
+#include "DatabaseAdapter/idatabasedriver.h"
+
+#include "DatabaseAdapter/iconnection.h"
+#include "DatabaseAdapter/model/databasesettings.h"
 
 namespace database_adapter {
 
@@ -6,14 +9,14 @@ IDataBaseDriver::IDataBaseDriver(models::database_settings /*settings*/)
 {
 }
 
-IDataBaseDriver::IDataBaseDriver(const std::shared_ptr<connection>& connection)
-    : _connection(connection)
+IDataBaseDriver::IDataBaseDriver(std::shared_ptr<IConnection> connection)
+    : _connection(std::move(connection))
 {
 }
 
 bool IDataBaseDriver::is_open() const
 {
-    return _connection->is_valid();
+    return _connection != nullptr && _connection->is_valid();
 }
 
 models::query_result IDataBaseDriver::exec(const std::string& query)

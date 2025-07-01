@@ -1,10 +1,13 @@
 #pragma once
 
-#include "connection.h"
 #include "model/queryresult.h"
 
 #include <memory>
 #include <string>
+
+namespace database_adapter {
+class IConnection;
+} // namespace database_adapter
 
 namespace database_adapter {
 /**
@@ -16,7 +19,7 @@ namespace database_adapter {
 class ITransaction
 {
 public:
-    explicit ITransaction(std::shared_ptr<connection> connection);
+    explicit ITransaction(std::shared_ptr<IConnection> connection);
 
     /**
      * @brief Деструктор по умолчанию.
@@ -66,6 +69,6 @@ public:
     models::query_result exec(const std::string& query);
 
 protected:
-    std::shared_ptr<connection> _connection;
+    std::shared_ptr<IConnection> _connection;
 };
 } // namespace database_adapter

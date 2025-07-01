@@ -1,16 +1,21 @@
 #pragma once
 
-#include "model/databasesettings.h"
 #include "model/queryresult.h"
 
 namespace database_adapter {
+namespace models {
+struct database_settings;
+} // namespace models
+} // namespace database_adapter
 
-class connection
+namespace database_adapter {
+
+class IConnection
 {
 public:
-    explicit connection(models::database_settings settings);
+    explicit IConnection(const models::database_settings& settings);
 
-    virtual ~connection() = default;
+    virtual ~IConnection() = default;
 
     virtual bool is_valid() = 0;
 

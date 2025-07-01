@@ -1,11 +1,11 @@
 #pragma once
 
-#include "connection.h"
 #include "model/databasesettings.h"
 
 #include <chrono>
 #include <memory>
 #include <mutex>
+#include <vector>
 
 namespace database_adapter {
 

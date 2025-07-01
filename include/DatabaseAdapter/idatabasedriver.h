@@ -1,15 +1,22 @@
 #pragma once
 
-#include "connection.h"
-#include "itransaction.h"
-#include "model/databasesettings.h"
 #include "model/queryresult.h"
 
 #include <memory>
+#include <string>
+#include <vector>
 
 namespace database_adapter {
+class IConnection;
 
-#define NULL_VALUE = "NULL";
+namespace models {
+struct database_settings;
+} // namespace models
+class ITransaction;
+} // namespace database_adapter
+
+namespace database_adapter {
+#define NULL_VALUE "NULL";
 
 /**
  * @brief Интерфейс для работы с базами данных.
@@ -29,7 +36,7 @@ public:
      * @brief Конструктор IDataBaseDriver с готовым соединением к базе данных.
      * @param connection Подключение к базе данных.
      */
-    explicit IDataBaseDriver(const std::shared_ptr<connection>& connection);
+    explicit IDataBaseDriver(std::shared_ptr<IConnection> connection);
 
     /**
      * @brief Деструктор по умолчанию.
@@ -81,7 +88,7 @@ public:
     std::shared_ptr<ITransaction> open_base_transaction() const;
 
 protected:
-    std::shared_ptr<connection> _connection;
+    std::shared_ptr<IConnection> _connection;
 };
 
 } // namespace database_adapter

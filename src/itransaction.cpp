@@ -1,8 +1,10 @@
 #include "DatabaseAdapter/itransaction.h"
 
+#include "DatabaseAdapter/iconnection.h"
+
 namespace database_adapter {
 
-ITransaction::ITransaction(std::shared_ptr<connection> connection)
+ITransaction::ITransaction(std::shared_ptr<IConnection> connection)
     : _connection(std::move(connection))
 {
 }
