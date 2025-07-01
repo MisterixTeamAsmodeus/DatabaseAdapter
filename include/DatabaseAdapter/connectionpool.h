@@ -22,8 +22,6 @@ public:
         , _max_pool_size(max_pool_size)
         , _wait_time(wait_time)
     {
-        static_assert(_start_pool_size <= _max_pool_size);
-
         std::lock_guard<std::mutex> lock_guard(_lock);
 
         for(auto i = 0; i < _start_pool_size; i++) {
@@ -37,6 +35,13 @@ public:
         : connection_pool(std::move(settings), start_pool_size, start_pool_size, wait_time)
     {
     }
+
+    ~connection_pool() = default;
+
+    connection_pool(const connection_pool& other) = delete;
+    connection_pool(connection_pool&& other) noexcept = delete;
+    connection_pool& operator=(const connection_pool& other) = delete;
+    connection_pool& operator=(connection_pool&& other) noexcept = delete;
 
     void set_max_pool_size(const size_t max_pool_size)
     {

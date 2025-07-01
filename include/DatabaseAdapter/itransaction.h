@@ -27,6 +27,12 @@ public:
     virtual ~ITransaction() = default;
 
     /**
+     * Функция для создания транзакции с заданным уровнем изоляции
+     * @param type Уровень изоляции. Зависит от конкретной реализации
+     */
+    virtual void open_transaction(int type) = 0;
+
+    /**
      * @brief Фиксирует изменения в базе данных.
      * Эта функция должна фиксировать все изменения, внесенные в базу данных
      * с момента начала текущей транзакции.
@@ -51,6 +57,11 @@ public:
     virtual void rollback_to_save_point(const std::string& save_point) = 0;
 
     /**
+     * Функция для создания транзакции с базовым уровнем изоляции
+     */
+    void open_base_transaction();
+
+    /**
      * Отменить изменения в базе данных
      */
     void rollback();
@@ -66,9 +77,10 @@ public:
      * @return Результат выполнения SQL-запроса.
      * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
      */
-    virtual models::query_result exec(const std::string& query);
+    models::query_result exec(const std::string& query);
 
 protected:
     std::shared_ptr<IConnection> _connection;
+    bool _has_error = false;
 };
 } // namespace database_adapter
