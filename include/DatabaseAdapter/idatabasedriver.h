@@ -1,5 +1,6 @@
 #pragma once
 
+#include "connection.h"
 #include "itransaction.h"
 #include "model/databasesettings.h"
 #include "model/queryresult.h"
@@ -8,6 +9,9 @@
 #include <vector>
 
 namespace database_adapter {
+
+#define NULL_VALUE = "NULL";
+
 /**
  * @brief Интерфейс для работы с базами данных.
  * Класс IDataBaseDriver предоставляет основные операции с базами данных,
@@ -17,66 +21,21 @@ class IDataBaseDriver
 {
 public:
     /**
-     * @brief Возвращает текст, представляющий NULL-значение в базе данных.
-     * @return NULL-значение в виде строки.
-     */
-    static std::string null_value();
-
-public:
-    /**
      * @brief Конструктор IDataBaseDriver с указанными настройками подключения.
      * @param settings Настройки подключения к базе данных.
      */
     explicit IDataBaseDriver(models::database_settings settings);
 
     /**
+     * @brief Конструктор IDataBaseDriver с готовым соединением к базе данных.
+     * @param connection Подключение к базе данных.
+     */
+    explicit IDataBaseDriver(const std::shared_ptr<connection>& connection);
+
+    /**
      * @brief Деструктор по умолчанию.
      */
     virtual ~IDataBaseDriver() = default;
-
-    /**
-     * Метод позволяющий инжектить объект адаптера в различные методы
-     * @return Новый экземпляр для подключения к базе данных
-     */
-    virtual std::shared_ptr<IDataBaseDriver> inject() = 0;
-
-    /**
-     * @brief Устанавливает соединение с базой данных.
-     * Эта функция должна устанавливать соединение с базой данных
-     * с использованием настроек, указанных при создании экземпляра драйвера.
-     * @return true, если соединение установлено успешно, иначе false.
-     * @throws Выбрасывает исключение open_database_exception в случае ошибки подключения к базе данных
-     */
-    virtual bool connect() = 0;
-
-    /**
-     * @brief Проверяет, открыто ли соединение с базой данных.
-     * @return true, если соединение открыто, иначе false.
-     */
-    virtual bool is_open() = 0;
-
-    /**
-     * @brief Отключается от базы данных.
-     * Эта функция должна закрыть текущее соединение с базой данных.
-     * @return true, если соединение закрыто успешно, иначе false.
-     */
-    virtual bool disconnect() const = 0;
-
-    /**
-     * @brief Выполняет SQL-запрос к базе данных.
-     * Эта функция должна выполнить указанный SQL-запрос к базе данных
-     * и вернуть результат в виде объекта QueryResult.
-     * @param query SQL-запрос.
-     * @return Результат выполнения SQL-запроса.
-     * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
-     */
-    virtual models::query_result exec(const std::string& query) = 0;
-    /**
-     * @brief Открывает новую транзакцию с типом -1.
-     * Эта функция должна открыть новую транзакцию и вернуть указатель на нее.
-     * @return Указатель на открытую транзакцию. Если транзакция не была открыта возвращается nullptr.
-     */
-    std::shared_ptr<ITransaction> open_base_transaction() const;
 
     /**
      * @brief Открывает новую транзакцию.
@@ -99,9 +58,31 @@ public:
      */
     virtual void append_returning(std::string& sql, const std::vector<std::string>& returning_columns);
 
+    /**
+     * @brief Проверяет, открыто ли соединение с базой данных.
+     * @return true, если соединение открыто, иначе false.
+     */
+    bool is_open() const;
+
+    /**
+     * @brief Выполняет SQL-запрос к базе данных.
+     * Эта функция должна выполнить указанный SQL-запрос к базе данных
+     * и вернуть результат в виде объекта QueryResult.
+     * @param query SQL-запрос.
+     * @return Результат выполнения SQL-запроса.
+     * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
+     */
+    models::query_result exec(const std::string& query);
+
+    /**
+     * @brief Открывает новую транзакцию с типом -1.
+     * Эта функция должна открыть новую транзакцию и вернуть указатель на нее.
+     * @return Указатель на открытую транзакцию. Если транзакция не была открыта возвращается nullptr.
+     */
+    std::shared_ptr<ITransaction> open_base_transaction() const;
+
 protected:
-    /// @brief Настройки подключения к базе данных.
-    models::database_settings _settings;
+    std::shared_ptr<connection> _connection;
 };
 
 } // namespace database_adapter

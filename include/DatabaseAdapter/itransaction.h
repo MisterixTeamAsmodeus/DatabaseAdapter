@@ -1,7 +1,9 @@
 #pragma once
 
+#include "connection.h"
 #include "model/queryresult.h"
 
+#include <memory>
 #include <string>
 
 namespace database_adapter {
@@ -14,10 +16,41 @@ namespace database_adapter {
 class ITransaction
 {
 public:
+    explicit ITransaction(std::shared_ptr<connection> connection);
+
     /**
      * @brief Деструктор по умолчанию.
      */
     virtual ~ITransaction() = default;
+
+    /**
+     * @brief Фиксирует изменения в базе данных.
+     * Эта функция должна фиксировать все изменения, внесенные в базу данных
+     * с момента начала текущей транзакции.
+     */
+    virtual bool commit() = 0;
+
+    /**
+     * @brief Добавляет точку сохранения в текущую транзакцию.
+     * Эта функция должна создать точку сохранения, которую можно использовать
+     * для отката изменений до этой точки в текущей транзакции.
+     * @param save_point Имя точки сохранения.
+     */
+    virtual bool add_save_point(const std::string& save_point) = 0;
+
+    /**
+     * @brief Откатывает изменения в базе данных до указанной точки сохранения.
+     * Эта функция должна откатить все изменения, внесенные в базу данных
+     * с момента создания указанной точки сохранения.
+     * @param save_point Точка сохранения, до которой необходимо откатить изменения.
+     * @note Если строка пустая должен произойти откат всех изменений
+     */
+    virtual bool rollback_to_save_point(const std::string& save_point) = 0;
+
+    /**
+     * Отменить изменения в базе данных
+     */
+    bool rollback();
 
     /**
      * @brief Выполняет SQL-запрос в рамках текущей транзакции.
@@ -30,34 +63,9 @@ public:
      * @return Результат выполнения SQL-запроса.
      * @throws Выбрасывает исключение sql_exception в случае ошибки выполнения запроса
      */
-    virtual models::query_result exec(const std::string& query) = 0;
+    models::query_result exec(const std::string& query);
 
-    /**
-     * @brief Фиксирует изменения в базе данных.
-     * Эта функция должна фиксировать все изменения, внесенные в базу данных
-     * с момента начала текущей транзакции.
-     */
-    virtual bool commit() = 0;
-
-    /**
-     * Отменить изменения в базе данных
-     */
-    virtual bool rollback();
-
-    /**
-     * @brief Откатывает изменения в базе данных до указанной точки сохранения.
-     * Эта функция должна откатить все изменения, внесенные в базу данных
-     * с момента создания указанной точки сохранения.
-     * @param save_point Точка сохранения, до которой необходимо откатить изменения.
-     */
-    virtual bool rollback(const std::string& save_point) = 0;
-
-    /**
-     * @brief Добавляет точку сохранения в текущую транзакцию.
-     * Эта функция должна создать точку сохранения, которую можно использовать
-     * для отката изменений до этой точки в текущей транзакции.
-     * @param save_point Имя точки сохранения.
-     */
-    virtual bool add_save_point(const std::string& save_point) = 0;
+protected:
+    std::shared_ptr<connection> _connection;
 };
 } // namespace database_adapter
