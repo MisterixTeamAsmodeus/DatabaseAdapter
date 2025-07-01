@@ -37,7 +37,7 @@ public:
      * Эта функция должна фиксировать все изменения, внесенные в базу данных
      * с момента начала текущей транзакции.
      */
-    virtual bool commit() = 0;
+    virtual void commit() = 0;
 
     /**
      * @brief Добавляет точку сохранения в текущую транзакцию.
@@ -81,6 +81,5 @@ public:
 
 protected:
     std::shared_ptr<IConnection> _connection;
-    bool _has_error = false;
 };
 } // namespace database_adapter

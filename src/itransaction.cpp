@@ -1,6 +1,5 @@
 #include "DatabaseAdapter/itransaction.h"
 
-#include "DatabaseAdapter/exception/sqlexception.h"
 #include "DatabaseAdapter/iconnection.h"
 
 namespace database_adapter {
@@ -17,12 +16,7 @@ void ITransaction::open_base_transaction()
 
 models::query_result ITransaction::exec(const std::string& query)
 {
-    try {
-        return _connection->exec(query);
-    } catch(const sql_exception&) {
-        _has_error = true;
-        throw;
-    }
+    return _connection->exec(query);
 }
 
 void ITransaction::rollback()
